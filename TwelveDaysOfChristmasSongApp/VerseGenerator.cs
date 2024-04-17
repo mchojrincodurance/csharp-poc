@@ -8,6 +8,11 @@ public class VerseGenerator
         {
             return "On the First day of Christmas,";
         }
+
+        if (i == 2)
+        {
+            return "On the Second day of Christmas,";
+        }
         throw new VerseNumberOutOfRange();
     }
 }
