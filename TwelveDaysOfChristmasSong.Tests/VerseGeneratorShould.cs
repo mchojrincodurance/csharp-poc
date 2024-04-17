@@ -17,12 +17,13 @@ namespace TwelveDaysOfChristmasSong.Tests
         }
 
         [Test]
-        public void generate_header_containing_day_numeral()
+        [TestCase(1, "First")]
+        public void generate_header_containing_day_numeral(int verseNumber, string dayNumeral)
         {
             var verseGenerator = new VerseGenerator();
-            var firstLine = verseGenerator.GenerateVerseFor(1).Split("\n")[0];
+            var firstLine = verseGenerator.GenerateVerseFor(verseNumber).Split("\n")[0];
             
-            Assert.That(firstLine, Is.EqualTo("On the First day of Christmas,"));
+            Assert.That(firstLine, Is.EqualTo($"On the {dayNumeral} day of Christmas,"));
         }
     }
 }
