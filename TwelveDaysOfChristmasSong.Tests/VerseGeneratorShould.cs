@@ -19,6 +19,7 @@ namespace TwelveDaysOfChristmasSong.Tests
         [Test]
         [TestCase(1, "First")]
         [TestCase(2, "Second")]
+        [TestCase(3, "Third")]
         public void generate_header_containing_day_numeral(int verseNumber, string dayNumeral)
         {
             var verseGenerator = new VerseGenerator();

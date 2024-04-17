@@ -4,15 +4,19 @@ public class VerseGenerator
 {
     public string GenerateVerseFor(int i)
     {
-        if (i == 1)
-        {
-            return "On the First day of Christmas,";
+        string numeral;
+        
+        switch(i) {
+            case 1 : numeral = "First";
+                break;
+            case 2: numeral = "Second";
+                break;
+            case 3: numeral = "Third";
+                break;
+            default:
+                throw new VerseNumberOutOfRange();
         }
-
-        if (i == 2)
-        {
-            return "On the Second day of Christmas,";
-        }
-        throw new VerseNumberOutOfRange();
+        
+        return $"On the {numeral} day of Christmas,";
     }
 }
