@@ -2,21 +2,20 @@ namespace TwelveDaysOfChristmasSongApp;
 
 public class VerseGenerator
 {
-    public string GenerateVerseFor(int i)
+    public string GenerateVerseFor(int verseNumber)
     {
-        string numeral;
-        
-        switch(i) {
-            case 1 : numeral = "First";
-                break;
-            case 2: numeral = "Second";
-                break;
-            case 3: numeral = "Third";
-                break;
-            default:
-                throw new VerseNumberOutOfRange();
+        string[] numerals =
+        {
+            "First",
+            "Second",
+            "Third",
+        };
+
+        if (verseNumber is < 1 or > 12)
+        {
+            throw new VerseNumberOutOfRange();
         }
         
-        return $"On the {numeral} day of Christmas,\nMy true love gave to me:\n";
+        return $"On the {numerals[verseNumber]} day of Christmas,\nMy true love gave to me:\n";
     }
 }
