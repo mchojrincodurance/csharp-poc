@@ -27,5 +27,15 @@ namespace TwelveDaysOfChristmasSong.Tests
             
             Assert.That(firstLine, Is.EqualTo($"On the {dayNumeral} day of Christmas,"));
         }
+
+        [Test]
+        public void generate_header_containing_opening_line()
+        {
+            var verseGenerator = new VerseGenerator();
+            var secondLine = verseGenerator.GenerateVerseFor(1).Split("\n")[1];
+            
+            Assert.That(secondLine, Is.EqualTo("My true love gave to me:"));          
+            
+        }
     }
 }

@@ -17,6 +17,6 @@ public class VerseGenerator
                 throw new VerseNumberOutOfRange();
         }
         
-        return $"On the {numeral} day of Christmas,";
+        return $"On the {numeral} day of Christmas,\nMy true love gave to me:\n";
     }
 }
