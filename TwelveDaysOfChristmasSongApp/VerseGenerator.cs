@@ -39,22 +39,31 @@ public static class VerseGenerator
         {
             throw new DayOutOfRange();
         }
-        
-        List<string> output =
-        [
-            $"On the {Numerals[day - 1]} day of Christmas",
-            "My true love gave to me:",
-        ];
 
+        var output = GenerateHeader(day);
+
+        output.AddRange(GenerateVerses(day));
+        
+        return output;
+    }
+
+    private static List<string> GenerateVerses(int day)
+    {
         List<string> verses = new List<string>();
 
         for (int i = 0; i < day; i++)
         {
             verses.Add(Verses[12 - day]);
         }
-        
-        output.AddRange(verses);
 
-        return output;
+        return verses;
+    }
+
+    private static List<string> GenerateHeader(int day)
+    {
+        return new List<string>([
+            $"On the {Numerals[day - 1]} day of Christmas",
+            "My true love gave to me:",
+        ]);
     }
 }
