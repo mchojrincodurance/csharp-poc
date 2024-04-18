@@ -51,11 +51,11 @@ public static class VerseGenerator
 
     private static List<string> GenerateVerses(int day)
     {
-        var generatedVerses = new List<string>();
+        var generatedVerses = new List<string>([Verses.Last()]);
 
-        for (int i = 0; i < day; i++)
+        for (int i = 1; i < day; i++)
         {
-            generatedVerses.Add(Verses[Verses.Length - 1 - i]);
+            generatedVerses.Insert(0, Verses[Verses.Length - 1 - i]);
         }
 
         return generatedVerses;

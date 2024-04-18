@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using TwelveDaysOfChristmasSongApp;
@@ -47,17 +46,18 @@ namespace TwelveDaysOfChristmasSong.Tests
         
         [Test]
         [TestCase(1, new String[]{"A partridge in a pear tree"})]
-        [TestCase(2, new String[]{"A partridge in a pear tree", "Two turtle doves"})]
-        [TestCase(3, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens"})]
-        [TestCase(4, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds"})]
-        [TestCase(5, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings"})]
-        [TestCase(6, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying"})]
-        [TestCase(7, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming"})]
-        [TestCase(8, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming", "Eight maids a-milking"})]
-        [TestCase(9, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming", "Eight maids a-milking", "Nine ladies dancing"})]
-        [TestCase(10, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming", "Eight maids a-milking", "Nine ladies dancing", "Ten lords a-leaping"})]
-        [TestCase(11, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming", "Eight maids a-milking", "Nine ladies dancing", "Ten lords a-leaping", "Eleven pipers piping"})]
-        [TestCase(12, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming", "Eight maids a-milking", "Nine ladies dancing", "Ten lords a-leaping", "Eleven pipers piping", "Twelve drummers drumming"})]
+        [TestCase(2, new String[]{"Two turtle doves", "A partridge in a pear tree",})]
+        [TestCase(3, new String[]{"Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
+        [TestCase(4, new String[]{"Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
+        [TestCase(5, new String[]{"Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
+        [TestCase(6, new String[]{"Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
+        [TestCase(7, new String[]{"Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
+        [TestCase(8, new String[]{"Eight maids a-milking", "Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
+        [TestCase(9, new String[]{"Nine ladies dancing", "Eight maids a-milking", "Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
+        [TestCase(10, new String[]{"Ten lords a-leaping", "Nine ladies dancing", "Eight maids a-milking", "Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
+        [TestCase(11, new String[]{"Eleven pipers piping", "Ten lords a-leaping", "Nine ladies dancing", "Eight maids a-milking", "Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
+        [TestCase(12, new String[]{"Twelve drummers drumming", "Eleven pipers piping", "Ten lords a-leaping", "Nine ladies dancing", "Eight maids a-milking", "Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
+        
         public void generate_the_correct_sequence(int day, string[] verses)
         {
             var output = VerseGenerator.GenerateFor(day);
