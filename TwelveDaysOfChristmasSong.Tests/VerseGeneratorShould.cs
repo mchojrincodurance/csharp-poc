@@ -12,7 +12,7 @@ namespace TwelveDaysOfChristmasSong.Tests
         [TestCase(13)]
         public void reject_inputs_outside_range(int verseNumber)
         {
-            Assert.Throws<DayOutOfRange>(() => VerseGenerator.GenerateForDay(verseNumber));
+            Assert.Throws<DayOutOfRange>(() => VerseGenerator.GenerateFor(verseNumber));
         }
 
         [Test]
@@ -30,24 +30,23 @@ namespace TwelveDaysOfChristmasSong.Tests
         [TestCase(12, "Twelfth")]
         public void generate_header_containing_day_numeral(int verseNumber, string dayNumeral)
         {
-            var firstLine = VerseGenerator.GenerateForDay(verseNumber)[0];
-            
-            Assert.That(firstLine, Is.EqualTo($"On the {dayNumeral} day of Christmas"));
+            Assert.That(VerseGenerator.GenerateFor(verseNumber).First(), Is.EqualTo($"On the {dayNumeral} day of Christmas"));
         }
 
         [Test]
-        public void generate_header_containing_opening_line()
+        [TestCase(1)]
+        [TestCase(4)]
+        [TestCase(7)]
+        public void generate_header_containing_opening_line(int day)
         {
-            var secondLine = VerseGenerator.GenerateForDay(1)[1];
-            
-            Assert.That(secondLine, Is.EqualTo("My true love gave to me:"));         
+            Assert.That(VerseGenerator.GenerateFor(day)[1], Is.EqualTo("My true love gave to me:"));         
             
         }
 
         [Test]
         public void generate_verse_for_day_one()
         {
-            var lastLine = VerseGenerator.GenerateForDay(1).Last();
+            var lastLine = VerseGenerator.GenerateFor(1).Last();
             Assert.That(lastLine, Is.EqualTo("A partridge in a pear tree"));
         }
 
@@ -66,7 +65,7 @@ namespace TwelveDaysOfChristmasSong.Tests
         [TestCase(1, "A partridge in a pear tree")]
         public void generate_the_correct_last_verse(int day, string lastVerse)
         {
-            var lines = VerseGenerator.GenerateForDay(day);
+            var lines = VerseGenerator.GenerateFor(day);
             var lastLine = lines.Last();
             Assert.That(lastLine, Is.EqualTo(lastVerse));
         }
@@ -77,7 +76,7 @@ namespace TwelveDaysOfChristmasSong.Tests
         [TestCase(11)]
         public void generate_the_correct_number_of_verses(int day)
         {
-            Assert.That(VerseGenerator.GenerateForDay(day).Count, Is.EqualTo(day + 2));
+            Assert.That(VerseGenerator.GenerateFor(day).Count, Is.EqualTo(day + 2));
         }
     }
 }

@@ -33,7 +33,7 @@ public static class VerseGenerator
         "A partridge in a pear tree",
     ];
 
-    public static List<string> GenerateForDay(int day)
+    public static List<string> GenerateFor(int day)
     {
         if (day is < 1 or > 12)
         {
