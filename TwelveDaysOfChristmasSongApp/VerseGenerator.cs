@@ -42,21 +42,23 @@ public static class VerseGenerator
 
         var output = GenerateHeader(day);
 
-        output.AddRange(GenerateVerses(day));
+        var generateVerses = GenerateVerses(day);
+        
+        output.AddRange(generateVerses);
         
         return output;
     }
 
     private static List<string> GenerateVerses(int day)
     {
-        List<string> verses = new List<string>();
+        var generatedVerses = new List<string>();
 
         for (int i = 0; i < day; i++)
         {
-            verses.Add(Verses[12 - day]);
+            generatedVerses.Add(Verses[Verses.Length - 1 - i]);
         }
 
-        return verses;
+        return generatedVerses;
     }
 
     private static List<string> GenerateHeader(int day)

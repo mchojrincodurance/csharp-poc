@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using TwelveDaysOfChristmasSongApp;
@@ -42,31 +44,26 @@ namespace TwelveDaysOfChristmasSong.Tests
             Assert.That(VerseGenerator.GenerateFor(day)[1], Is.EqualTo("My true love gave to me:"));
         }
 
+        
         [Test]
-        [TestCase(1, "A partridge in a pear tree")]
-        [TestCase(2, "Two turtle doves")]
-        [TestCase(3, "Three French hens")]
-        [TestCase(4, "Four calling birds")]
-        [TestCase(5, "Five golden rings")]
-        [TestCase(6, "Six geese a-laying")]
-        [TestCase(7, "Seven swans a-swimming")]
-        [TestCase(8, "Eight maids a-milking")]
-        [TestCase(9, "Nine ladies dancing")]
-        [TestCase(10, "Ten lords a-leaping")]
-        [TestCase(11, "Eleven pipers piping")]
-        [TestCase(12, "Twelve drummers drumming")]
-        public void generate_the_correct_last_verse(int day, string lastVerse)
+        [TestCase(1, new String[]{"A partridge in a pear tree"})]
+        [TestCase(2, new String[]{"A partridge in a pear tree", "Two turtle doves"})]
+        [TestCase(3, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens"})]
+        [TestCase(4, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds"})]
+        [TestCase(5, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings"})]
+        [TestCase(6, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying"})]
+        [TestCase(7, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming"})]
+        [TestCase(8, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming", "Eight maids a-milking"})]
+        [TestCase(9, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming", "Eight maids a-milking", "Nine ladies dancing"})]
+        [TestCase(10, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming", "Eight maids a-milking", "Nine ladies dancing", "Ten lords a-leaping"})]
+        [TestCase(11, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming", "Eight maids a-milking", "Nine ladies dancing", "Ten lords a-leaping", "Eleven pipers piping"})]
+        [TestCase(12, new String[]{"A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five golden rings", "Six geese a-laying", "Seven swans a-swimming", "Eight maids a-milking", "Nine ladies dancing", "Ten lords a-leaping", "Eleven pipers piping", "Twelve drummers drumming"})]
+        public void generate_the_correct_sequence(int day, string[] verses)
         {
-            Assert.That(VerseGenerator.GenerateFor(day).Last(), Is.EqualTo(lastVerse));
-        }
-
-        [Test]
-        [TestCase(1)]
-        [TestCase(3)]
-        [TestCase(11)]
-        public void generate_the_correct_number_of_verses(int day)
-        {
-            Assert.That(VerseGenerator.GenerateFor(day).Count, Is.EqualTo(day + 2));
+            var output = VerseGenerator.GenerateFor(day);
+            output.RemoveRange(0, 2);
+            
+            Assert.That(output.ToArray(), Is.EqualTo(verses));
         }
     }
 }
