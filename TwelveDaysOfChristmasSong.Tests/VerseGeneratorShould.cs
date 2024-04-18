@@ -57,9 +57,7 @@ namespace TwelveDaysOfChristmasSong.Tests
         [TestCase(12, "Twelve drummers drumming")]
         public void generate_the_correct_last_verse(int day, string lastVerse)
         {
-            var lines = VerseGenerator.GenerateFor(day);
-            var lastLine = lines.Last();
-            Assert.That(lastLine, Is.EqualTo(lastVerse));
+            Assert.That(VerseGenerator.GenerateFor(day).Last(), Is.EqualTo(lastVerse));
         }
 
         [Test]
