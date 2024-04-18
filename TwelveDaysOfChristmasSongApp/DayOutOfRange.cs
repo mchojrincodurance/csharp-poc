@@ -2,6 +2,6 @@ using System;
 
 namespace TwelveDaysOfChristmasSongApp;
 
-public class VerseNumberOutOfRange : Exception
+public class DayOutOfRange : Exception
 {
 }
