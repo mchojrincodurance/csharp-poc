@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using TwelveDaysOfChristmasSongApp;
 
@@ -20,6 +21,7 @@ namespace TwelveDaysOfChristmasSong.Tests
         [TestCase(1, "First")]
         [TestCase(2, "Second")]
         [TestCase(3, "Third")]
+        [TestCase(4, "Fourth")]
         public void generate_header_containing_day_numeral(int verseNumber, string dayNumeral)
         {
             var firstLine = VerseGenerator.GenerateVerseFor(verseNumber)[0];
@@ -34,6 +36,13 @@ namespace TwelveDaysOfChristmasSong.Tests
             
             Assert.That(secondLine, Is.EqualTo("My true love gave to me:"));         
             
+        }
+
+        [Test]
+        public void generate_verse_for_day_one()
+        {
+            var lastLine = VerseGenerator.GenerateVerseFor(1).Last();
+            Assert.That(lastLine, Is.EqualTo("A partridge in a pear tree"));
         }
     }
 }

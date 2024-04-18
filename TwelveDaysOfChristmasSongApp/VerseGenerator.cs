@@ -8,7 +8,8 @@ public class VerseGenerator
         [
             "First",
             "Second",
-            "Third"
+            "Third",
+            "Fourth",
         ];
 
         if (verseNumber is < 1 or > 12)
@@ -20,6 +21,7 @@ public class VerseGenerator
         [
             $"On the {numerals[verseNumber - 1]} day of Christmas,",
             "My true love gave to me:",
+            "A partridge in a pear tree",
         ];
     }
 }
