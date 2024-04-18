@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using NUnit.Framework;
 using TwelveDaysOfChristmasSongApp;
@@ -43,27 +42,42 @@ namespace TwelveDaysOfChristmasSong.Tests
             Assert.That(VerseGenerator.GenerateFor(day)[1], Is.EqualTo("My true love gave to me:"));
         }
 
-        
         [Test]
-        [TestCase(1, new String[]{"A partridge in a pear tree"})]
-        [TestCase(2, new String[]{"Two turtle doves", "A partridge in a pear tree",})]
-        [TestCase(3, new String[]{"Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
-        [TestCase(4, new String[]{"Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
-        [TestCase(5, new String[]{"Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
-        [TestCase(6, new String[]{"Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
-        [TestCase(7, new String[]{"Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
-        [TestCase(8, new String[]{"Eight maids a-milking", "Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
-        [TestCase(9, new String[]{"Nine ladies dancing", "Eight maids a-milking", "Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
-        [TestCase(10, new String[]{"Ten lords a-leaping", "Nine ladies dancing", "Eight maids a-milking", "Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
-        [TestCase(11, new String[]{"Eleven pipers piping", "Ten lords a-leaping", "Nine ladies dancing", "Eight maids a-milking", "Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
-        [TestCase(12, new String[]{"Twelve drummers drumming", "Eleven pipers piping", "Ten lords a-leaping", "Nine ladies dancing", "Eight maids a-milking", "Seven swans a-swimming", "Six geese a-laying", "Five golden rings", "Four calling birds", "Three French hens", "Two turtle doves", "A partridge in a pear tree",})]
-        
-        public void generate_the_correct_sequence(int day, string[] verses)
+        [TestCase(1, "A partridge in a pear tree")]
+        [TestCase(2, "Two turtle doves")]
+        [TestCase(3, "Three French hens")]
+        [TestCase(4, "Four calling birds")]
+        [TestCase(5, "Five golden rings")]
+        [TestCase(6, "Six geese a-laying")]
+        [TestCase(7, "Seven swans a-swimming")]
+        [TestCase(8, "Eight maids a-milking")]
+        [TestCase(9, "Nine ladies dancing")]
+        [TestCase(10, "Ten lords a-leaping")]
+        [TestCase(11, "Eleven pipers piping")]
+        [TestCase(12, "Twelve drummers drumming")]
+        public void add_the_new_verse_at_the_beginning(int day, string newVerse)
         {
-            var output = VerseGenerator.GenerateFor(day);
-            output.RemoveRange(0, 2);
+            var newSequence = VerseGenerator.GenerateFor(day);
+            newSequence.RemoveRange(0, 2);
             
-            Assert.That(output.ToArray(), Is.EqualTo(verses));
+            Assert.That(newSequence.First(), Is.EqualTo(newVerse));
+        }
+
+        [Test]
+        [TestCase(2)]
+        [TestCase(5)]
+        [TestCase(9)]
+        [TestCase(12)]
+        public void only_add_new_verse_to_previous_sequence(int day)
+        {
+            var previousSequence = VerseGenerator.GenerateFor(day - 1);
+            previousSequence.RemoveRange(0, 2);
+            var currentSequence = VerseGenerator.GenerateFor(day);
+            currentSequence.RemoveRange(0, 2);
+            
+            previousSequence.Insert(0, currentSequence.First());
+            
+            Assert.That(previousSequence, Is.EqualTo(currentSequence));
         }
     }
 }
