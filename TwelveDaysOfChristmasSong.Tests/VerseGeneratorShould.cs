@@ -39,18 +39,11 @@ namespace TwelveDaysOfChristmasSong.Tests
         [TestCase(7)]
         public void generate_header_containing_opening_line(int day)
         {
-            Assert.That(VerseGenerator.GenerateFor(day)[1], Is.EqualTo("My true love gave to me:"));         
-            
+            Assert.That(VerseGenerator.GenerateFor(day)[1], Is.EqualTo("My true love gave to me:"));
         }
 
         [Test]
-        public void generate_verse_for_day_one()
-        {
-            var lastLine = VerseGenerator.GenerateFor(1).Last();
-            Assert.That(lastLine, Is.EqualTo("A partridge in a pear tree"));
-        }
-
-        [Test]
+        [TestCase(1, "A partridge in a pear tree")]
         [TestCase(2, "Two turtle doves")]
         [TestCase(3, "Three French hens")]
         [TestCase(4, "Four calling birds")]
@@ -62,7 +55,6 @@ namespace TwelveDaysOfChristmasSong.Tests
         [TestCase(10, "Ten lords a-leaping")]
         [TestCase(11, "Eleven pipers piping")]
         [TestCase(12, "Twelve drummers drumming")]
-        [TestCase(1, "A partridge in a pear tree")]
         public void generate_the_correct_last_verse(int day, string lastVerse)
         {
             var lines = VerseGenerator.GenerateFor(day);
