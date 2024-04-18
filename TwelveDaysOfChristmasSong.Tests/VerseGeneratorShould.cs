@@ -63,11 +63,21 @@ namespace TwelveDaysOfChristmasSong.Tests
         [TestCase(10, "Ten lords a-leaping")]
         [TestCase(11, "Eleven pipers piping")]
         [TestCase(12, "Twelve drummers drumming")]
+        [TestCase(1, "A partridge in a pear tree")]
         public void generate_the_correct_last_verse(int day, string lastVerse)
         {
             var lines = VerseGenerator.GenerateForDay(day);
             var lastLine = lines.Last();
             Assert.That(lastLine, Is.EqualTo(lastVerse));
+        }
+
+        [Test]
+        [TestCase(1)]
+        [TestCase(3)]
+        [TestCase(11)]
+        public void generate_the_correct_number_of_verses(int day)
+        {
+            Assert.That(VerseGenerator.GenerateForDay(day).Count, Is.EqualTo(day + 2));
         }
     }
 }
